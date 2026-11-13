@@ -1,0 +1,129 @@
+{
+  "entities": {
+    "WishlistItem": {
+      "title": "WishlistItem",
+      "description": "A user's saved application or game bookmark synced across IndexedDB and Firestore.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the wishlist document",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the authenticated user who owns this wishlist entry",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "appId": {
+          "type": "string",
+          "description": "Unique application identifier",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the application or game",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "developer": {
+          "type": "string",
+          "description": "Publisher or developer name",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "platform": {
+          "type": "string",
+          "description": "Target operating system platform",
+          "enum": ["pc", "android", "ios"]
+        },
+        "category": {
+          "type": "string",
+          "description": "Application category",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "thumbnail": {
+          "type": "string",
+          "description": "Thumbnail icon URL",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "officialUrl": {
+          "type": "string",
+          "description": "Official store or website URL",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "directDownloadUrl": {
+          "type": "string",
+          "description": "Direct download or store page URL",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "secondarySourceUrl": {
+          "type": "string",
+          "description": "Optional F-Droid or open-source repository URL",
+          "maxLength": 2048
+        },
+        "secondarySourceLabel": {
+          "type": "string",
+          "description": "Optional label for the secondary download source",
+          "maxLength": 120
+        },
+        "wingetId": {
+          "type": "string",
+          "description": "Optional Windows Package Manager identifier",
+          "maxLength": 160
+        },
+        "chocoId": {
+          "type": "string",
+          "description": "Optional Chocolatey package identifier",
+          "maxLength": 160
+        },
+        "addedAt": {
+          "type": "number",
+          "description": "Epoch timestamp in milliseconds when saved"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "appId",
+        "name",
+        "developer",
+        "platform",
+        "category",
+        "thumbnail",
+        "officialUrl",
+        "directDownloadUrl",
+        "addedAt",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/wishlist/{itemId}": {
+      "schema": {
+        "$ref": "#/entities/WishlistItem"
+      },
+      "description": "User-scoped wishlist items collection storing bookmarked PC, Android, and iOS applications."
+    }
+  }
+}

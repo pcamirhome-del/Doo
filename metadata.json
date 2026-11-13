@@ -1,0 +1,6 @@
+{
+  "name": "NexusDeploy — Universal App & Game Discovery Engine",
+  "description": "Offline-capable Progressive Web App for discovering, bookmarking, and bulk-deploying authentic applications across PC (Winget/FOSS), Android (Google Play/F-Droid), and iOS (App Store).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
